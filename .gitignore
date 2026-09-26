@@ -1,0 +1,16 @@
+# Upstream checkouts are pinned sibling dependencies, not vendored into this project.
+/EmbodiedSWE/
+/k1/
+/robocode/
+/GPT-Policy/
+
+# Local environments and experiment output.
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+runs/
+experiments/
+artifacts/
+*.log
+
