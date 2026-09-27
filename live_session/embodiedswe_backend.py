@@ -87,6 +87,7 @@ class BulbBackend:
         mode: str = "privileged",
         max_delta: float = 1.0,
         task: str = "bulb",
+        app: Any = None,
     ) -> None:
         if mode not in {"privileged", "realistic"}:
             raise ValueError("mode must be privileged or realistic")
@@ -95,6 +96,7 @@ class BulbBackend:
         if task not in {"bulb", "server_repair"}:
             raise ValueError("task must be bulb or server_repair")
         self.task = task
+        self._app = app
         self.max_delta = float(max_delta)
         if self.max_delta <= 0:
             raise ValueError("max_delta must be positive")
@@ -269,6 +271,8 @@ class BulbBackend:
 
     def close(self) -> None:
         self.env.close()
+        if self._app is not None:
+            self._app.close()
 
     def _rgbd_capture(self) -> dict[str, Any]:
         if self.observation_mode != "realistic":
@@ -346,14 +350,14 @@ def build_bulb(*, mode: str = "privileged", control_mode: str = "osc", **_: Any)
     """Launch one bulb env. Must run on the Isaac host, not in a normal unit-test process."""
     from isaaclab.app import AppLauncher
 
-    AppLauncher(headless=True, enable_cameras=(mode == "realistic")).app
+    app = AppLauncher(headless=True, enable_cameras=(mode == "realistic")).app
     import robobench
 
     robobench.discover()
     from robobench.core.registries import ENVS
 
     env = ENVS.get(f"assembly.bulb.franka.{control_mode}")().build(num_envs=1, room=None)
-    return BulbBackend(env, mode=mode)
+    return BulbBackend(env, mode=mode, app=app)
 
 
 def build_server_repair(
@@ -362,7 +366,7 @@ def build_server_repair(
     """Launch one server-repair env with the same persistent-session contract."""
     from isaaclab.app import AppLauncher
 
-    AppLauncher(headless=True, enable_cameras=(mode == "realistic")).app
+    app = AppLauncher(headless=True, enable_cameras=(mode == "realistic")).app
     import robobench
 
     robobench.discover()
@@ -371,4 +375,4 @@ def build_server_repair(
     env = ENVS.get(f"assembly.server_repair.franka.{control_mode}")().build(
         num_envs=1, room=None
     )
-    return BulbBackend(env, mode=mode, task="server_repair")
+    return BulbBackend(env, mode=mode, task="server_repair", app=app)
