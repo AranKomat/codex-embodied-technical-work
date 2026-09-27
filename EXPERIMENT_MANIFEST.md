@@ -40,10 +40,10 @@ Test whether a coding agent can diagnose and repair a simulated server through b
 1. Reproduce one EmbodiedSWE PC smoke and one fresh-reset Codex solve/grading run. **Done:** Phase 0 bulb score `0.6667`; server-repair capability run started.
 2. Inspect existing PC scenes, tools, graders, and control contracts.
 3. Add the smallest physically coupled server-diagnosis interface and `gpu_unseated` or `ram_unseated` task. **Done:** capability-mode `server_repair` scene, diagnostic tool, condition, and grader alias.
-4. Obtain one scratch-Codex repair using privileged capability-mode state. **Partial:** diagnosis, grasp, and lift pass; insertion fails.
-5. Freeze the generated program and measure held-out generalization. **Blocked:** no complete repair yet.
-6. Measure transfer with prior code, semantic trace, and selected keyframes.
-7. Only then add the realistic RGB/RGB-D and K1-like tool condition.
+4. Obtain one scratch-Codex repair using privileged capability-mode state. **Historical baseline:** diagnosis, grasp, and lift passed; the first insertion path failed.
+5. Freeze the generated program and measure held-out generalization. **Done for the corrected staged path:** fresh integrated replay passed, followed by a three-environment holdout; physical seating and digital healthcheck both passed. See [`docs/2026-09-27-demo-first-progress.md`](docs/2026-09-27-demo-first-progress.md).
+6. Package the verified repair as the demo-first milestone. **Done:** logs, stage code, and visual traces are archived under `artifacts/server_repair_demo_20260927/`.
+7. Run one bounded sensor-derived RGB-D/proprioception bridge. **Next:** do not start the full K1/SAM/GraspGen/VLA stack; first measure how much of the verified procedure survives without exact target geometry.
 
 ## Updated realistic-interactive direction
 

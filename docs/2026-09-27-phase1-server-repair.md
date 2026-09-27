@@ -46,3 +46,17 @@ the read-only benchmark mount lacked a writable `/bench/.cache` lock directory.
 `eval/scripts/run_agent.py` now allocates and mounts a per-run `asset-cache`,
 matching the grading runner's existing behavior. This needs one fresh-run
 validation before verifier failures are treated as experiment results.
+
+## Subsequent corrected result
+
+The historical result above was superseded by a clearance-aware staged insertion
+path. The corrected path first moved the held card into a clear interior staging
+pose, confirmed alignment, slid rearward, pressed to seat, released, and
+withdrew the gripper. A fresh integrated replay passed all three stages, physical
+seating, gripper clearance, and the digital healthcheck. A separate three-
+environment holdout also passed all of those gates. The complete evidence is
+archived in [`../artifacts/server_repair_demo_20260927/`](../artifacts/server_repair_demo_20260927/).
+
+This does not remove the historical failure: it records why the original path
+failed and why the corrected controller is a meaningful measured update rather
+than a claim that the general robotics stack is solved.
