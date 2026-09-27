@@ -54,3 +54,18 @@ The first implementation milestone is the persistent session prototype in
 [`docs/2026-09-27-live-session.md`](docs/2026-09-27-live-session.md). The
 GPU-backed same-state demonstration, RGB-D facade, Contact V0, and frozen
 versus interactive recovery comparison remain open.
+
+## R2 exploratory snapshot: 2026-09-28
+
+The fresh Astra run `r2_codex_astra_fresh` for
+`experiments/phase1_server_repair_single` was intentionally stopped before its
+20-minute budget so the GPU instance could be shut down safely. It is not a
+formal R2 result. The container exited with code 143 after six failed grasp
+attempts; no saved checkpoint, successful submission, or fresh-reset grader
+verdict was produced. The latest assessment found a reachable hand pose whose
+fingers overclosed on the card's top edge; the card remained ungrasped.
+
+The complete workspace snapshot, including checkpoints, assessments, footage,
+logs, and candidate solution, is archived under
+`artifacts/r2_codex_astra_fresh_20260928/`. The compressed snapshot has SHA-256
+`c0a48b370ed8b1af1801a8114b301d0583d07874782809d1cff985ca1396dd0c`.

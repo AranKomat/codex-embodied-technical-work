@@ -242,9 +242,10 @@ end-to-end bulb success in the observed trial. This supports using it as a
 cheap exploration model and Astra for claims, while avoiding an unsupported
 claim that the model comparison is fully benchmarked.
 
-## Current R2 Experiment
+## R2 Exploratory Run (Archived)
 
-A fresh bounded Astra run was launched for exploratory interactive comparison:
+A fresh bounded Astra run was launched for exploratory interactive comparison
+and has now been archived before stopping the GPU instance:
 
 ```text
 experiment: experiments/phase1_server_repair_single
@@ -262,19 +263,23 @@ command:
   --run r2_codex_astra_fresh
 ```
 
-At handoff time the run was still active in container
-`rb_phase1_server_repair_single_r2_codex_astra_fresh`. The local tool session
-handle was `3280`. Do not restart or kill it solely because output is quiet.
+The container was stopped intentionally at about 17 minutes, before the
+20-minute budget and before a formal grader verdict. It exited with code 143.
+The local archive is:
 
-After completion, inspect:
+- `artifacts/r2_codex_astra_fresh_20260928/`
+- archive SHA-256:
+  `c0a48b370ed8b1af1801a8114b301d0583d07874782809d1cff985ca1396dd0c`
 
-```text
-/workspace/codex-embodied-technical-work/EmbodiedSWE/experiments/phase1_server_repair_single/runs/r2_codex_astra_fresh/
-```
+The snapshot contains six failed attempts, checkpoints, assessments, footage,
+and the latest candidate solution. The latest attempt reached the card but
+closed over its top edge without lifting it; the assessment recommended using
+the measured slab aperture and maintaining the pinch. Earlier attempts included
+a joint-limit failure and an empty-air closure. No successful submission or
+fresh-reset grade was produced.
 
-Review `container.log`, `workspace/solution/`, submissions, and grader results.
-Copy important artifacts to a new outer `artifacts/` directory. Label this run
-as exploratory unless it actually satisfies the matched R2 conditions below.
+This is exploratory failure evidence, not an R2 completion result. Full details
+are in `artifacts/r2_codex_astra_fresh_20260928/README.md`.
 
 ## Intended R2 Design
 
@@ -327,14 +332,18 @@ or prompt sweeps.
 
 ## Recommended Next Actions
 
-1. Let `r2_codex_astra_fresh` finish and archive its complete logs.
-2. Update `EXPERIMENT_MANIFEST.md` with the run ID, model, budget, outcome, and
-   artifact path.
-3. Add a concise R2 report under `docs/` with explicit matched/unmatched
-   conditions.
-4. Run the local tests and syntax checks listed above.
-5. Commit and push the report and any new artifacts.
-6. Only then choose between completing the matched R2 sequence or packaging
+1. Resume from the archived Astra exploratory snapshot only when a GPU is
+   available, using its aperture diagnosis rather than restarting the same
+   failed grasp probes.
+2. Update `EXPERIMENT_MANIFEST.md` with any resumed run ID, model, budget,
+   outcome, and artifact path.
+3. Run the matched frozen baseline and interactive comparison under the same
+   fixture and budget policy.
+4. Repeat interactive recovery with the prior successful repair artifact
+   supplied explicitly, then freeze and grade the recovered program.
+5. Run the local tests and syntax checks listed above.
+6. Commit and push the report and any new artifacts.
+7. Only then choose between completing the matched R2 sequence or packaging
    the realistic localization blocker as a boundary result.
 
 ## Claim Boundary
