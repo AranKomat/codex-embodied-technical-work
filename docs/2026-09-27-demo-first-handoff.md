@@ -104,7 +104,7 @@ Primary artifacts:
 The artifact folder includes the frozen `solve.py`, controller helpers, stage
 modules, raw logs, and a ten-frame visual trace.
 
-### 3. Same-fixture frozen generalization
+### 3. Frozen generalization
 
 The frozen program was graded without additional model calls:
 
@@ -122,6 +122,24 @@ release, and healthcheck criteria. Artifacts are under
 This is strong evidence inside one fixture family. It is not yet evidence for a
 different component, deliberate layout offset, staging-position shift, or
 initial robot configuration.
+
+A deliberate structural holdout then registered
+`assembly.server_repair_jitter.franka.osc`, preserving the fixture while
+applying up to 10 mm of loose-card XY reset jitter. The unchanged frozen
+solution passed:
+
+- seed 2;
+- three environments;
+- `3/3` success;
+- score mean/min/max `1.0 / 1.0 / 1.0`.
+
+The receipt is archived under
+`artifacts/r1_frozen_grade_jitter10mm_seed2/`. The first attempt was blocked
+before simulation by root-only staged USD permissions; the build path now
+normalizes permissions after the complete extraction/boot-repair loop, and a
+permission-check build confirmed readable mode `0644`. This adds evidence for
+small initial-state variation, but different components, chassis layouts, and
+robot configurations remain untested.
 
 ### 4. Realistic RGB-D substrate
 
@@ -213,17 +231,11 @@ Follow this order.
    user instruction, terminal diagnosis, generated robot program, measured
    physical stages, final seating, and healthcheck pass. Preserve the uncut log
    and exact provenance alongside any edited presentation.
-2. **Repair the jitter grader's asset permissions.** Change only the copied
-   experiment/cache permissions or extraction behavior needed for the grader to
-   read its vendored assets. Do not alter the frozen solution or task geometry.
-3. **Rerun the 10 mm structural holdout.** Use the exact frozen solution, seed 2,
-   three environments, and no model calls. Report it separately from the prior
-   `6/6` same-fixture result.
-4. **Run one bounded server-repair realism bridge.** Expose the server-repair
+2. **Run one bounded server-repair realism bridge.** Expose the server-repair
    scene through the realistic session backend, use RGB-D plus proprioception,
    and record how far the existing repair can proceed without exact object
    poses. A cleanly localized failure is useful.
-5. **Stop broadening after the bridge.** Package the result before starting
+3. **Stop broadening after the bridge.** Package the result before starting
    contact sensing, SAM, K1, GraspGen-X, VLA training, or a new embodiment.
 
 After those items, the longer research order is:
@@ -269,4 +281,3 @@ git diff --check
 ```
 
 Expected current unit-test result: four tests pass.
-

@@ -1,0 +1,31 @@
+{
+  "exp": "/workspace/codex-embodied-technical-work/EmbodiedSWE/experiments/r1_server_repair_jitter10mm_readable",
+  "stage": "01_server_repair_jitter_franka",
+  "preset": "assembly.server_repair_jitter.franka.osc",
+  "grade": "g_20260927_145719",
+  "seed": 2,
+  "num_envs": 3,
+  "solution": "/workspace/codex-embodied-technical-work/EmbodiedSWE/experiments/phase1_server_repair_single/runs/phase1_codex_astra_demo/workspace/solution",
+  "image": "rb-l1-agent:2.1.216",
+  "gpu": "0",
+  "network": "bridge",
+  "budget_min": 20.0,
+  "started": "2026-09-27T14:57:19+00:00",
+  "ended": "2026-09-27T15:09:29+00:00",
+  "status": "completed",
+  "container_exit_code": 0,
+  "argv": [
+    "eval/scripts/run_grade.py",
+    "experiments/r1_server_repair_jitter10mm_readable",
+    "--solution",
+    "experiments/phase1_server_repair_single/runs/phase1_codex_astra_demo/workspace/solution",
+    "--out",
+    "/workspace/r1_grade_jitter10mm_seed2_retry",
+    "--seed",
+    "2",
+    "--num-envs",
+    "3",
+    "--budget-min",
+    "20"
+  ]
+}
