@@ -14,3 +14,8 @@ experiments/
 artifacts/
 *.log
 
+# Curated provenance for qualified demo runs.
+!artifacts/
+artifacts/*
+!artifacts/server_repair_demo_20260927/
+!artifacts/server_repair_demo_20260927/**
