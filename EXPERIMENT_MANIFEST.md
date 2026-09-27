@@ -41,7 +41,7 @@ Test whether a coding agent can diagnose and repair a simulated server through b
 2. Inspect existing PC scenes, tools, graders, and control contracts.
 3. Add the smallest physically coupled server-diagnosis interface and `gpu_unseated` or `ram_unseated` task. **Done:** capability-mode `server_repair` scene, diagnostic tool, condition, and grader alias.
 4. Obtain one scratch-Codex repair using privileged capability-mode state. **Historical baseline:** diagnosis, grasp, and lift passed; the first insertion path failed.
-5. Freeze the generated program and measure held-out generalization. **In progress with a strong first result:** the repository grader passed `3/3` randomized trajectories at seed 0 with score mean `1.0`; deliberate component/layout/initial-state variants remain. See [`docs/2026-09-27-r1-status.md`](docs/2026-09-27-r1-status.md).
+5. Freeze the generated program and measure held-out generalization. **Strong initial result:** the repository grader passed `6/6` randomized trajectories across seeds 0 and 1 with score mean `1.0`; deliberate component/layout/initial-state variants remain. See [`docs/2026-09-27-r1-status.md`](docs/2026-09-27-r1-status.md).
 6. Package the verified repair as the demo-first milestone. **Done:** logs, stage code, and visual traces are archived under `artifacts/server_repair_demo_20260927/`.
 7. Run one bounded sensor-derived RGB-D/proprioception bridge. **In progress:** the realistic adapter now returns a 640x480 RGB-D frame without privileged object poses; the next experiment is a generic locate/measure facade and one no-privilege repair attempt. Do not start the full K1/SAM/GraspGen/VLA stack.
 

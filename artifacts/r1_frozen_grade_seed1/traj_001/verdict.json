@@ -1,0 +1,9 @@
+{
+  "preset": "assembly.server_repair.franka.osc",
+  "scene": "server_repair",
+  "seed": 1,
+  "traj": 1,
+  "criteria": "PcGpuAssemblyGrader: The card seated in its slot \u2014 pressed to depth, centred, upright, heading along the slot. \u2014 rubric: grasped \u00d71 (once) \u00b7 aligned \u00d71 \u00b7 pressed \u00d71",
+  "success": true,
+  "score": 1.0
+}
