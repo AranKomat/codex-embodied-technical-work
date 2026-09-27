@@ -24,6 +24,9 @@ The subsequent fresh holdout verifier also passed in all three environments:
 
 The holdout log and visual trace are under [`../artifacts/server_repair_demo_20260927/holdout/`](../artifacts/server_repair_demo_20260927/holdout/).
 
+The complete frozen program, including stage modules and controller helpers, is
+preserved under [`../artifacts/server_repair_demo_20260927/frozen_solution/`](../artifacts/server_repair_demo_20260927/frozen_solution/). This makes R1 reproducible without reconstructing the agent workspace.
+
 The complete raw log and ten-frame visual trace are archived under [`../artifacts/server_repair_demo_20260927/`](../artifacts/server_repair_demo_20260927/). The exact integrated stage module used by the replay is [`../artifacts/server_repair_demo_20260927/stage_3.py`](../artifacts/server_repair_demo_20260927/stage_3.py).
 
 ## What changed from the failed path

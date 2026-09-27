@@ -1,0 +1,172 @@
+cat: '/sys/devices/system/cpu/cpu*/cpufreq/scaling_governor': No such file or directory
+Loading user config located at: '/opt/venv/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[Info] [carb] Logging to file: /opt/venv/lib/python3.11/site-packages/isaacsim/kit/logs/Kit/Isaac-Sim/5.1/kit_20260927_125008.log
+2026-09-27T12:50:08Z [331ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-09-27T12:50:08Z [331ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-09-27T12:50:08Z [369ms] [Warning] [omni.platforminfo.plugin] failed to open the default display.  Can't verify X Server version.
+
+|---------------------------------------------------------------------------------------------|
+| Driver Version: 580.178.04    | Graphics API: Vulkan
+|=============================================================================================|
+| GPU | Name                             | Active | LDA | GPU Memory | Vendor-ID | LUID       |
+|     |                                  |        |     |            | Device-ID | UUID       |
+|     |                                  |        |     |            | Bus-ID    |            |
+|---------------------------------------------------------------------------------------------|
+| 0   | NVIDIA GeForce RTX 4090          | Yes: 0 |     | 24810   MB | 10de      | 0          |
+|     |                                  |        |     |            | 2684      | 2268e0ea.. |
+|     |                                  |        |     |            | 0         |            |
+|=============================================================================================|
+| OS: 24.04.1 LTS (Noble Numbat) ubuntu, Version: 24.04.1, Kernel: 6.8.0-138-generic
+| Processor: AMD EPYC 7B12 64-Core Processor
+| Cores: 30 | Logical Cores: 30
+|---------------------------------------------------------------------------------------------|
+| Total Memory (MB): 101289 | Free Memory: 85981
+| Total Page/Swap (MB): 0 | Free Page/Swap: 0
+|---------------------------------------------------------------------------------------------|
+2026-09-27T12:50:10Z [2,074ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-09-27T12:50:10Z [2,074ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-09-27T12:50:10Z [2,099ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-09-27T12:50:10Z [2,099ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-09-27T12:50:10Z [2,109ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-09-27T12:50:10Z [2,109ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-09-27T12:50:10Z [2,124ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-09-27T12:50:10Z [2,124ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-09-27T12:50:10Z [2,126ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-09-27T12:50:10Z [2,126ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-09-27T12:50:10Z [2,127ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-09-27T12:50:10Z [2,127ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-09-27T12:50:10Z [2,425ms] [Warning] [omni.log] Source: omni.hydra was already registered.
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /opt/venv/lib/python3.11/site-packages/isaaclab/apps/isaaclab.python.headless.rendering.kit
+1. (no label)
+   scene: Opened lifted, over-case, release and final images. Lifted card clearly clears the holder; final card is occluded by the case after release, and the gripper is empty above it.
+   log: origin=fresh through n1; stage2 origin=checkpoint:n1 via run_stage. Stage1 passed stable held lift. Above case had 12 mm lateral and 3.4 degree roll error; inside had 8 mm lateral and 4 degree yaw. Rear slide rotated card approximately 80 degrees. Final healthcheck FAIL and physical seated=False. Recorded stage2 failure a2.
+   failed: Insertion proceeded despite pose error, caught the slot geometry and released an unseated card. Add convergence gates and compare controller support strategies from n1. Do not repeat blind descent/release.
+2. (no label)
+   scene: Visual assessment unavailable in parallel controller strategy sweep; all geometry and gate outcomes printed numerically.
+   log: {'candidates': [('0:insert', {'support': 'integral'}), ('1:insert', {'support': 'gravity'})], 'scores': [10.234939575195312, 10.251386642456055], 'stds': [0.0, 0.0], 'ranking': [0, 1], 'best': ('0:insert', {'support': 'integral'}), 'best_score': 10.234939575195312, 'group_sizes': [2, 2], 'steps': 420, 'evaluations': 4, 'seconds': 161.8}
+   failed: Compare integral and model-based gravity support; convergence gates prevent blind descent or release.
+3. (no label) [ATTEMPT a3 partial]
+   scene: Camera frames captured for later inspection; no visual claim made yet.
+   log: origin=checkpoint:n1. See /workspace/inspect_alignment.log DIAG for convergence and control saturation.
+   failed: Diagnosis-only run measures alignment convergence and saturation; no insertion attempted and no probe checkpoint saved.
+4. (no label)
+   scene: Opened final alignment image: card held upright over the open chassis, with the foam holder empty.
+   log: origin=checkpoint:n1. At 850 steps card position error 0.181 mm, orientation error 0.0507 degree. Held true; action roll channel settled near 6.77, above the original clamp of 5. Full telemetry in inspect_alignment.log.
+   failed: Original action cap prevented adequate payload support; after raising authority, remaining issue is slow rotation-integral convergence. Stable viable aligned hover now demonstrated.
+5. (no label) [ATTEMPT a5 failed]
+   scene: Final camera snapshot saved for subsequent pixel inspection.
+   log: origin=checkpoint:n1 full adaptive seed insertion result {'stage': 2, 'passed': False, 'attempt': 'a4', 'health': {'max_lin_vel': 0.0007948460406623781, 'max_ang_vel': 0.014093970879912376, 'max_joint_vel': 0.01772161014378071, 'min_joint_margin_rad': 0.2986001968383789, 'scene_success': False, 'unsafe_reasons': [], 'unsafe': False}, 'origin': 'n1'}; $ healthcheck
+FAIL: GPU 1 not detected
+   failed: Use phase errors and final image to judge insertion; seed gain unchanged while separate search tunes alignment speed.
+6. (no label)
+   scene: Opened final seed insertion image: card remains in the top-edge pinch inside the case, visibly angled across the motherboard instead of aligned with the slot.
+   log: origin=checkpoint:n1. Over-case gate passed at 755 steps: 0.403 mm and 0.095 degree. Inside gate failed at 1200: 24.6 mm and 30.2 degrees, grasp still true. No slide or release performed. Stage attempt a4 and assessment attempt a5 recorded.
+   failed: The tab overlaps the left slot end stop during descent at x=seat-40mm. Tracking lag during height change lets it catch and yaw. Re-plan descent into the clear forward region before sliding back; clearance bounds come from the collider geometry.
+7. (no label)
+   scene: Visual assessment unavailable in numeric search; last complete generation retained grasps and found a passing alignment candidate.
+   log: Search stopped without a result during paired replay. Three complete generations; best RGAIN=0.0797561366, in-search goal rate 100%, invalid 0%. No ADOPT verdict or paired winner result was produced. Log /workspace/.psearch/tune_alignment_120727/log ends during checkpoint restore, with no Python traceback. Memory cgroup reports no OOM.
+   failed: Unexplained simulator/process exit invalidates adoption. Preserve the incumbent 0.025 gain; do not integrate the unvalidated numerical winner. Geometry failure separately motivates a strategy comparison with corrected payload-only compensation.
+8. (no label)
+   scene: Visual assessment unavailable in current sweep; numerical phase completion is measured for both far-forward replicas.
+   log: origin=checkpoint:n1. clear_forward inside phase passed at 256 steps: 0.402 mm position error, 0.101 degree orientation error, grasp held in 2/2. Rearward slide and seating remain in progress.
+   failed: Far-forward descent avoided the previously observed slot collision. Preserve this measurable intermediate improvement; full seating is not yet established.
+9. (no label)
+   scene: Visual assessment unavailable for parallel strategy sweep; winning physical route will be replayed with cameras.
+   log: {'candidates': [('0:paths', {'path': 'clear_forward'}), ('1:paths', {'path': 'staged_near'})], 'scores': [0.0007679034024477005, 0.0007896663155406713], 'stds': [0.0, 0.0], 'ranking': [0, 1], 'best': ('0:paths', {'path': 'clear_forward'}), 'best_score': 0.0007679034024477005, 'group_sizes': [2, 2], 'steps': 1232, 'evaluations': 4, 'seconds': 696.0}
+   failed: Compare far-forward clearance and staged near descent using payload-only compensation, retaining the incumbent integral gain.
+10. (no label)
+   scene: Visual assessment unavailable for parallel sweep; camera replay is next. All four final states were measured after gripper release and withdrawal.
+   log: origin=checkpoint:n1. Far-forward path success 2/2, score 0.000767903; staged-near path success 2/2, score 0.000789666. Both reached ~4.98 mm engaged depth before release and retained success afterwards. Far-forward ranked first. Full log clearance_sweep_123646/log.
+   failed: Both corrected paths work. Select far-forward for its first-place score and larger descent clearance; reject the original overlapping descent and arm-weight compensation branches. Still require staged and fresh integrated replays.
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-27_12-50-24.log[0m
+[36m======================================================================================[0m
+
+[33m12:50:25 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[room] server_repair: 1 room(s), zero physics prims
+[checkpoint_tree] reopened 2 checkpoint(s), 5 attempt(s); 2 planned stage(s); active origin n0 (fresh)
+[checkpoint_tree] plan recorded: 3 stage(s)
+already tried from n1:
+  [a2] attempt outcome=failed reusable=False stage=2: stage 2: card seated, gripper clear, node healthy
+     note: stage check returned False
+     code: stage_2.py (/workspace/.checkpoints/a2.code.py)
+  [a3] attempt outcome=partial reusable=False: Diagnosis-only run measures alignment convergence and saturation; no insertion attempted and no probe checkpoint saved.
+     note: Diagnosis-only run measures alignment convergence and saturation; no insertion attempted and no probe checkpoint saved.
+     code: inspect_alignment.py (/workspace/.checkpoints/a3.code.py)
+  [a4] attempt outcome=failed reusable=False stage=2: stage 2: card seated, gripper clear, node healthy
+     note: stage check returned False
+     code: insertion_seed.py (/workspace/.checkpoints/a4.code.py)
+  [a5] attempt outcome=failed reusable=False: Use phase errors and final image to judge insertion; seed gain unchanged while separate search tunes alignment speed.
+     note: Use phase errors and final image to judge insertion; seed gain unchanged while separate search tunes alignment speed.
+     code: insertion_seed.py (/workspace/.checkpoints/a5.code.py)
+[33m12:50:28 [simulation_context.py] WARNING: Cannot change render mode when GUI is disabled. Using the default render mode: 1.[0m
+[scene_view] capture ready, rgb shape (720, 1280, 4), writing to /workspace/.footage/clearance_replay
+origin=checkpoint:n1
+$ nvidia-smi
+GPU 0: healthy
+GPU 1: NOT DETECTED
+$ healthcheck
+FAIL: GPU 1 not detected
+[checkpoint_tree] world restored to n1 'card securely grasped and lifted clear of holder' [stage 1 boundary]; health: lin 0.001 m/s, ang 0.01 rad/s, joints 0.006 rad/s, limit margin 0.563 rad, scene success=False
+[checkpoint_tree] the restore kept gripper/actuator setpoints: send an intentional first command before stepping
+[checkpoint_tree] stage 2 'card squarely aligned in clear case interior': running from n1
+TRACK over clear interior 100 [0.2467288374900818] [0.023195533081889153]
+TRACK over clear interior 200 [0.09922541677951813] [0.008597206324338913]
+TRACK over clear interior 300 [0.0046979342587292194] [0.01426464319229126]
+TRACK over clear interior 400 [0.00040826291660778224] [0.0023533490020781755]
+PHASE over clear interior steps 415 poserr [0.0002792166778817773] roterr [0.0015986933140084147] held [[True]]
+over clear interior hand [[0.3391836881637573, 0.04115605726838112, 0.4670516550540924]] quat [[-0.0004065970133524388, -0.0011065914295613766, 0.999873161315918, 0.015884386375546455]] card [[0.3388535678386688, 0.029237084090709686, 0.2625882029533386]] cq [[0.9999997019767761, -0.00024785258574411273, 5.261894330033101e-05, 0.0007581197423860431]] held [[True]] depth [-0.225188210606575] success [False]
+finger joints [[0.01542380079627037, 0.014904400333762169]]
+[scene_view] wrote /workspace/.footage/clearance_replay/0001_over_clear_interior.png
+TRACK aligned in clear interior 100 [0.0647919699549675] [0.0009186398820020258]
+TRACK aligned in clear interior 200 [0.0015645342646166682] [0.006966227665543556]
+PHASE aligned in clear interior steps 257 poserr [0.00042082107393071055] roterr [0.0016399833839386702] held [[True]]
+aligned in clear interior hand [[0.3392260670661926, 0.041359804570674896, 0.25113365054130554]] quat [[-0.0002447625156491995, -0.001131170429289341, 0.9998660087585449, 0.01632952317595482]] card [[0.33896389603614807, 0.029620345681905746, 0.046658955514431]] cq [[0.9999995827674866, 0.0001909038401208818, -0.00011263583292020485, 0.0007894692826084793]] held [[True]] depth [-0.009258956648409367] success [False]
+finger joints [[0.01552738156169653, 0.014806950464844704]]
+[scene_view] wrote /workspace/.footage/clearance_replay/0002_aligned_in_clear_interior.png
+[scene_view] wrote /workspace/.footage/clearance_replay/0003_ckpt_n2_card_squarely_aligned_in_clear_case_interior.png
+[checkpoint_tree] saved n2 'card squarely aligned in clear case interior' [stage 2 boundary] (parent n1, outcome ok); health: lin 0.001 m/s, ang 0.00 rad/s, joints 0.006 rad/s, limit margin 0.279 rad, scene success=False
+[checkpoint_tree] changed vs n1: robot.controller.0.prev_action max|Δ|=4.8024; robot.joint_effort_target max|Δ|=2.6631; robot.joint_pos max|Δ|=1.6246; card max|Δ|=0.3982; robot.joint_vel max|Δ|=0.0027
+[checkpoint_tree] stage 2 check passed -> boundary n2. plan (3 stages):
+  ✓ stage 1: card securely grasped and lifted clear of holder  — boundary nodes: n1
+  ✓ stage 2: card squarely aligned in clear case interior  — boundary nodes: n2
+  ○ stage 3: card seated and gripper clear; node healthy
+STAGE2 {'stage': 2, 'passed': True, 'node': 'n2', 'health': {'max_lin_vel': 0.0012996104778721929, 'max_ang_vel': 0.0039962464943528175, 'max_joint_vel': 0.006399470381438732, 'min_joint_margin_rad': 0.27939391136169434, 'scene_success': False, 'unsafe_reasons': [], 'unsafe': False}, 'origin': 'n1'}
+[checkpoint_tree] stage 3 'card seated and gripper clear; node healthy': running from n2
+PHASE confirm interior alignment steps 20 poserr [0.0002991362998727709] roterr [0.0006842491566203535] held [[True]]
+confirm interior alignment hand [[0.33931776881217957, 0.04128017649054527, 0.2510998845100403]] quat [[-0.000566944363527, -0.0005812080926261842, 0.9998708963394165, 0.016044769436120987]] card [[0.33890947699546814, 0.02942636050283909, 0.046631887555122375]] cq [[0.9999998211860657, -8.693280688021332e-05, 0.00022246982553042471, 0.00024493844830431044]] held [[True]] depth [-0.009231888689100742] success [False]
+finger joints [[0.015428788959980011, 0.014912473037838936]]
+[scene_view] wrote /workspace/.footage/clearance_replay/0004_confirm_interior_alignment.png
+TRACK rearward slide 100 [0.006437288597226143] [0.0059101153165102005]
+TRACK rearward slide 200 [0.0006010438082739711] [0.004621071740984917]
+PHASE rearward slide steps 241 poserr [0.00029213313246145844] roterr [0.0026856912299990654] held [[True]]
+rearward slide hand [[0.48431506752967834, 0.04113401100039482, 0.2508960962295532]] quat [[-0.0006334105273708701, 0.0008784300298430026, 0.9998627305030823, 0.016534997150301933]] card [[0.4838290810585022, 0.029489666223526, 0.046423688530921936]] cq [[0.9999990463256836, 0.0004126780549995601, 0.00031993002630770206, -0.001237146439962089]] held [[True]] depth [-0.009023689664900303] success [False]
+finger joints [[0.015081898309290409, 0.015244918875396252]]
+[scene_view] wrote /workspace/.footage/clearance_replay/0005_rearward_slide.png
+pressed to seat hand [[0.4843892753124237, 0.041556358337402344, 0.2368539571762085]] quat [[-0.00024422971182502806, -0.00039093257510103285, 0.9998820424079895, 0.015350175090134144]] card [[0.48410117626190186, 0.029429974034428596, 0.032411426305770874]] cq [[0.9999997019767761, -0.0007667401805520058, -9.14476258913055e-05, 4.004316724603996e-05]] held [[True]] depth [0.004988573025912046] success [True]
+finger joints [[0.014972526580095291, 0.015368792228400707]]
+[scene_view] wrote /workspace/.footage/clearance_replay/0006_pressed_to_seat.png
+[grasp-weld] env 0: RELEASED card
+released seated card hand [[0.4843994677066803, 0.04158179461956024, 0.23682637512683868]] quat [[-0.00035010173451155424, -0.00029227169579826295, 0.9998853802680969, 0.015130284242331982]] card [[0.48412075638771057, 0.02914842963218689, 0.0324673131108284]] cq [[0.9998598098754883, -0.016746817156672478, -8.447311188319873e-07, -2.846754512120242e-07]] held [[False]] depth [0.004932686220854521] success [True]
+finger joints [[0.039995837956666946, 0.039996061474084854]]
+[scene_view] wrote /workspace/.footage/clearance_replay/0007_released_seated_card.png
+gripper clear hand [[0.4841897785663605, 0.04153173044323921, 0.3873606026172638]] quat [[-0.00046180770732462406, -0.0009536888683214784, 0.9998840689659119, 0.015188260935246944]] card [[0.4841550886631012, 0.02914847433567047, 0.032467231154441833]] cq [[0.9998595118522644, -0.016758527606725693, 1.2088523817510577e-06, 2.3153818062837672e-07]] held [[False]] depth [0.004932768177241087] success [True]
+finger joints [[0.039996884763240814, 0.03999703750014305]]
+[scene_view] wrote /workspace/.footage/clearance_replay/0008_gripper_clear.png
+[scene_view] wrote /workspace/.footage/clearance_replay/0009_ckpt_n3_card_seated_and_gripper_clear__node_healthy.png
+[checkpoint_tree] saved n3 'card seated and gripper clear; node healthy' [stage 3 boundary] (parent n2, outcome ok); health: lin 0.007 m/s, ang 0.11 rad/s, joints 0.005 rad/s, limit margin 0.523 rad, scene success=True
+[checkpoint_tree] changed vs n2: robot.controller.0.prev_action max|Δ|=7.1898; robot.joint_effort_target max|Δ|=3.2810; robot.joint_pos max|Δ|=0.7922; card max|Δ|=0.1452; robot.joint_pos_target max|Δ|=0.0280; robot.joint_vel max|Δ|=0.0088
+[checkpoint_tree] stage 3 check passed -> boundary n3. plan (3 stages):
+  ✓ stage 1: card securely grasped and lifted clear of holder  — boundary nodes: n1
+  ✓ stage 2: card squarely aligned in clear case interior  — boundary nodes: n2
+  ✓ stage 3: card seated and gripper clear; node healthy  — boundary nodes: n3
+STAGE3 {'stage': 3, 'passed': True, 'node': 'n3', 'health': {'max_lin_vel': 0.0072091929614543915, 'max_ang_vel': 0.10863398760557175, 'max_joint_vel': 0.005379458889365196, 'min_joint_margin_rad': 0.5226421356201172, 'scene_success': True, 'unsafe_reasons': [], 'unsafe': False}, 'origin': 'n2'}
+[scene_view] wrote /workspace/.footage/clearance_replay/0010_final.png
+$ healthcheck
+PASS
+PHYSICAL [True] [[False]]
+[checkpoint_tree] recorded attempt a6 from n3: Integrated stage modules include a portable alignment confirmation before sliding; record final physical and diagnostic results. -> ok
+[assessment] recorded review #17 (attempt a6)
+FINISHED
