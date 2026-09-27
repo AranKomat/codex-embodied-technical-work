@@ -11,3 +11,9 @@ checkout. Its phase-1 result is summarized in
 [`docs/2026-09-27-phase1-server-repair.md`](docs/2026-09-27-phase1-server-repair.md);
 the full source remains isolated in the sibling checkout so upstream history is
 not silently vendored into this project.
+
+The active direction is now the realistic interactive track described in
+[`docs/2026-09-27-live-session.md`](docs/2026-09-27-live-session.md) and the
+[`realistic interactive handoff`](../CODEX_EMBODIED_REALISTIC_INTERACTIVE_HANDOFF_20260927.md).
+The persistent session is an execution substrate, not a task-specific skill
+library; RGB-D and contact observations remain explicit follow-up work.

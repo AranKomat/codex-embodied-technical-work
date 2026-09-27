@@ -44,3 +44,13 @@ Test whether a coding agent can diagnose and repair a simulated server through b
 5. Freeze the generated program and measure held-out generalization. **Blocked:** no complete repair yet.
 6. Measure transfer with prior code, semantic trace, and selected keyframes.
 7. Only then add the realistic RGB/RGB-D and K1-like tool condition.
+
+## Updated realistic-interactive direction
+
+The superseding roadmap is
+[`CODEX_EMBODIED_REALISTIC_INTERACTIVE_HANDOFF_20260927.md`](../CODEX_EMBODIED_REALISTIC_INTERACTIVE_HANDOFF_20260927.md).
+The first implementation milestone is the persistent session prototype in
+[`live_session/`](live_session/) and its report in
+[`docs/2026-09-27-live-session.md`](docs/2026-09-27-live-session.md). The
+GPU-backed same-state demonstration, RGB-D facade, Contact V0, and frozen
+versus interactive recovery comparison remain open.
