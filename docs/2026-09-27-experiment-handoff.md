@@ -113,7 +113,17 @@ Holdout 2 completed with a failure:
 
 This is a real robustness failure, not merely a checkpoint warning. The centered-regrasp logic is therefore currently `nominal pass + holdout 1 pass + holdout 2 fail`.
 
-Holdout 3 has been launched automatically by the agent after holdout 2. Its final verdict is pending and it is the only active simulator process that should be allowed to use the GPU.
+Holdout 3 completed with the same qualitative failure:
+
+- origin: fresh;
+- instance: `holdout_3`;
+- initial grasp/lift and upright transition passed;
+- the first regrasp lost the bulb;
+- repeated recovery turns left the bulb far from the socket and sideways;
+- final `seated=False`;
+- runtime `1178.0 s`.
+
+The three holdouts therefore produced `1/3` success. The nominal and holdout-1 passes demonstrate a viable controller, but the current program does not meet a meaningful robustness standard. The phase should be recorded as a partial success, not advanced as a robust frozen policy.
 
 There was one infrastructure mistake during holdout execution: a manual holdout-2 launch overlapped with the agent's automatically launched holdout-2. The manually launched duplicate was terminated; the agent-owned run is the surviving scored run. The duplicate's shutdown diagnostics must not be counted as a controller result. Holdout 3 is being run only by the agent-owned sequence.
 
@@ -168,7 +178,7 @@ The handoff defines the following progression:
 | Experiment | Intended condition | Status |
 |---|---|---|
 | E0 | Scratch, privileged, one known task | Partial/full bulb results; server-repair scratch result is partial |
-| E1 | Scratch, privileged, held-out variants | Bulb holdout 1 passed, holdout 2 failed, holdout 3 in progress; server-repair holdout not started |
+| E1 | Scratch, privileged, held-out variants | Bulb: `1/3` holdouts passed; server-repair holdout not started |
 | E2 | Prior code, privileged, related task | Not started |
 | E3 | Prior code plus semantic trace | Not started |
 | E4 | Prior code plus trace and selected keyframes | Not started |
@@ -231,15 +241,14 @@ These results show that generated programs can be useful teachers. They do not s
 
 ## Immediate Next Actions
 
-1. Let the agent-owned holdout 3 finish; archive its final verdict and images.
-2. Treat the three-holdout result as a robustness gate. If the final result is not strong, make one phase-level regrasp decision rather than launching a long parameter sweep.
-3. Run one clean fresh-reset server-repair evaluation through the corrected per-run cache mount.
-4. Use Diff-IK as the comparison backend, but address final Cartesian insertion with one controlled approach strategy rather than more perception work.
-5. Complete one server repair before running prior-code, semantic-trace, or keyframe ablations.
-6. Freeze the completed repair program and evaluate 2-3 held-out server configurations without LLM calls.
-7. Compare scratch, prior-code, prior-code-plus-trace, and prior-code-plus-keyframes using matched budgets and at least three replicates where feasible.
-8. Only after those results, remove privileged state and evaluate RGB/RGB-D plus K1-style tools.
-9. Add a learned motor policy only if a specific residual failure remains after classical control and sensor-derived feedback are adequate.
+1. Archive holdout 3 and the complete `1/3` bulb robustness result; do not launch another bulb sweep now.
+2. Run one clean fresh-reset server-repair evaluation through the corrected per-run cache mount.
+3. Use Diff-IK as the comparison backend, but address final Cartesian insertion with one controlled approach strategy rather than more perception work.
+4. Complete one server repair before running prior-code, semantic-trace, or keyframe ablations.
+5. Freeze the completed repair program and evaluate 2-3 held-out server configurations without LLM calls.
+6. Compare scratch, prior-code, prior-code-plus-trace, and prior-code-plus-keyframes using matched budgets and at least three replicates where feasible.
+7. Only after those results, remove privileged state and evaluate RGB/RGB-D plus K1-style tools.
+8. Add a learned motor policy only if a specific residual failure remains after classical control and sensor-derived feedback are adequate.
 
 ## Decision Rules
 
