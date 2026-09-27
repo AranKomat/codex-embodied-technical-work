@@ -29,6 +29,7 @@ def candidate(rgb: np.ndarray, depth: np.ndarray) -> tuple[float, float, float]:
 def main() -> None:
     output = Path("realistic_server_repair_hover.json")
     control_mode = os.environ.get("CONTROL_MODE", "osc")
+    max_steps = int(os.environ.get("MAX_STEPS", "80"))
     backend = build_server_repair(mode="realistic", control_mode=control_mode)
     try:
         before = backend.dispatch("observe", {"cameras": [], "depth": True})
@@ -49,7 +50,7 @@ def main() -> None:
                 "position_m": hover,
                 "quaternion_wxyz": orientation,
                 "mode": "linear",
-                "max_steps": 80,
+                "max_steps": max_steps,
             },
         )
         after = backend.dispatch("observe", {"cameras": [], "depth": True})
@@ -57,6 +58,7 @@ def main() -> None:
             "task": "server_repair",
             "mode": "realistic",
             "control_mode": control_mode,
+            "max_steps": max_steps,
             "input": {
                 "pixel": [u, v],
                 "depth_m": depth_m,

@@ -192,6 +192,13 @@ but ended at `0.2504 m` position error, versus OSC's `0.0596 m` position and
 position/reach or target-frame issue plus an OSC orientation issue; it does not
 justify adding a learned policy before the motion contract is clarified.
 
+A 250-step Diff-IK run still ended `0.0579 m` from the target with `0.060 rad`
+rotation error. Longer execution therefore did not solve the position residual;
+stop spending time on cap sweeps. The remaining realistic question is whether
+the RGB-D point is biased, the direct path meets unobserved geometry, or the
+motion helper has a reachability/frame defect. Contact and clearance evidence
+are required to distinguish these cases.
+
 ## Negative and Partial Results
 
 ### Bulb task

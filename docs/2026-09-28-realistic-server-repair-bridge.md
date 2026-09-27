@@ -104,6 +104,20 @@ issue in the realistic helper, not a reason to add a VLA or grasp model. Both
 runs were exploratory, with clearance and contact unknown. The Diff-IK
 artifacts are under `artifacts/realistic_server_repair_20260928/diffik/`.
 
+A longer Diff-IK run with the same target and a 250-step cap ended at:
+
+- position error: `0.0579 m`;
+- rotation error: `0.060 rad`;
+- reached: `false`.
+
+Increasing the cap therefore did not remove the position residual. This is
+evidence against a simple timeout explanation. The remaining possibilities are
+target-frame/localization error, an unobserved obstacle or contact constraint,
+or the backend's motion law settling at a reachable boundary. Because contact
+and clearance are unavailable, the experiment must not infer which one from
+this run alone. The longer-run artifact is under
+`artifacts/realistic_server_repair_20260928/diffik250/`.
+
 ## Implementation
 
 `live_session/embodiedswe_backend.py` now supports:
