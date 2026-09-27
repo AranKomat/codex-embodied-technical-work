@@ -173,10 +173,11 @@ under `artifacts/realistic_server_repair_20260928/`, with details in
 task-specific observation-substrate check, not the realistic repair task.
 
 A transparent RGB-plus-depth baseline then generated a plausible card-region
-candidate at pixel `(314.9, 408.1)` and deprojected it to `[-0.0807, 0.0560,
-1.2025]` m through the public measurement path. This used zero motion and no
-privileged pose; it is a candidate anchor, not an independently verified
-localization success.
+candidate at pixel `(315.1, 408.1)` and, after correcting the axial-depth and
+image-Y conventions, deprojected it to `[0.2881, -0.3388, -0.0444]` m through
+the public measurement path. This used zero motion and no privileged pose; it
+is a candidate anchor, not an independently verified localization success.
+The earlier, superseded geometry receipts remain archived for provenance.
 
 ## Negative and Partial Results
 

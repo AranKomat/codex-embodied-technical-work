@@ -45,16 +45,25 @@ A second no-motion pass used only RGB contrast and finite depth as a transparent
 baseline. It selected a small chromatic candidate in the lower work surface:
 
 - pixel bounding box: `[288, 388, 343, 420]`;
-- weighted pixel center: approximately `(314.9, 408.1)`;
-- median measured depth: `1.8831 m`;
-- public RGB-D deprojection: `[-0.0807, 0.0560, 1.2025]` m;
+- weighted pixel center: approximately `(315.1, 408.1)`;
+- median axial camera-Z depth: `1.8048 m`;
+- corrected public RGB-D deprojection: `[0.2881, -0.3388, -0.0444]` m;
 - motion actions: `0`;
 - privileged pose used: `false`.
 
 The candidate overlaps the visible card in the retained frame, but there is no
 independent target-pose check in this condition. Treat it as a plausible
-observation-derived anchor, not a localization success. The receipt is
-`realistic_server_repair_localization.json` in the artifact directory.
+observation-derived anchor, not a localization success. The authoritative
+corrected receipt is `realistic_server_repair_localization_v3.json` in the
+artifact directory.
+
+### Geometry correction
+
+The first two receipts are retained for provenance but are superseded. The
+provider initially used Euclidean `distance_to_camera` with a helper that
+expects axial camera-Z depth, and the helper also used the wrong sign for image
+Y. The provider now uses `distance_to_image_plane`, and image-down maps to
+negative camera Y. The off-center RGB-D regression test covers the latter.
 
 ## Implementation
 

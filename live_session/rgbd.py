@@ -23,7 +23,9 @@ def deproject_pixel(
     if fx <= 0 or fy <= 0:
         raise ValueError("focal lengths must be positive")
     x = (float(u) - cx) * depth_m / fx
-    y = (float(v) - cy) * depth_m / fy
+    # Image coordinates grow downward, while the camera-to-world basis uses
+    # true-up as its positive Y axis.
+    y = (cy - float(v)) * depth_m / fy
     camera_point = [x, y, depth_m, 1.0]
     return [
         sum(float(camera_to_world[row][col]) * camera_point[col] for col in range(4))

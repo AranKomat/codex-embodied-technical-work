@@ -19,6 +19,24 @@ class RgbdGeometryTest(unittest.TestCase):
         )
         self.assertEqual(point, [0.0, 0.0, 0.5])
 
+    def test_image_down_maps_to_world_down_for_upright_camera(self) -> None:
+        point = deproject_pixel(
+            320.0,
+            340.0,
+            2.0,
+            fx=500.0,
+            fy=500.0,
+            cx=320.0,
+            cy=240.0,
+            camera_to_world=[
+                [1.0, 0.0, 0.0, 0.0],
+                [0.0, 1.0, 0.0, 0.0],
+                [0.0, 0.0, 1.0, 0.0],
+            ],
+        )
+        self.assertLess(point[1], 0.0)
+        self.assertAlmostEqual(point[1], -0.4, places=6)
+
     def test_rejects_invalid_depth(self) -> None:
         with self.assertRaises(ValueError):
             deproject_pixel(

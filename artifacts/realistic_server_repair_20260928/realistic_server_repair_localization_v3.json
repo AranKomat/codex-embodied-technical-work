@@ -1,0 +1,29 @@
+{
+  "candidate": {
+    "bbox_xyxy": [
+      288,
+      388,
+      343,
+      420
+    ],
+    "depth_m_median": 1.8048206567764282,
+    "pixel": [
+      315.0843373493976,
+      408.1341365461847
+    ],
+    "pixel_count": 26
+  },
+  "measurement": {
+    "point_world_m": [
+      0.2880865772994383,
+      -0.33877670456644915,
+      -0.04438101895411606
+    ],
+    "source": "rgbd_pixel_depth"
+  },
+  "method": "rgb_saturation_plus_finite_depth",
+  "mode": "realistic",
+  "motion_actions": 0,
+  "privileged_pose_used": false,
+  "task": "server_repair"
+}

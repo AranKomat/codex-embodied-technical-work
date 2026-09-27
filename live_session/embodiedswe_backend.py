@@ -300,7 +300,11 @@ class _RgbdProvider:
         env.sim.set_camera_view(self.eye, self.target, camera_prim_path="/OmniverseKit_Persp")
         self.product = rep.create.render_product("/OmniverseKit_Persp", (self.width, self.height))
         self.rgb = rep.AnnotatorRegistry.get_annotator("rgb", device="cpu")
-        self.depth = rep.AnnotatorRegistry.get_annotator("distance_to_camera", device="cpu")
+        # deproject_pixel expects axial camera-Z depth. `distance_to_camera` is
+        # Euclidean ray distance and would bias off-axis world reconstruction.
+        self.depth = rep.AnnotatorRegistry.get_annotator(
+            "distance_to_image_plane", device="cpu"
+        )
         self.rgb.attach([self.product])
         self.depth.attach([self.product])
         for _ in range(6):
@@ -326,7 +330,7 @@ class _RgbdProvider:
             "depth_path": str(path),
             "rgb_shape": list(rgb.shape),
             "depth_shape": list(depth.shape),
-            "depth_unit": "meters",
+            "depth_unit": "meters_camera_z",
             "frame": "world",
             "fx": self.fx,
             "fy": self.fy,
