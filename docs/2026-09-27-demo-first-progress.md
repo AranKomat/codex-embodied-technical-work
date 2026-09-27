@@ -16,6 +16,14 @@ The run started from the repaired-card checkpoint `n1`, executed the staged path
 - Final checkpoint: `n3`.
 - Replay attempt: `a6`.
 
+The subsequent fresh holdout verifier also passed in all three environments:
+
+- physical evaluator: all three cards seated;
+- grippers: released in all three environments;
+- final healthcheck: `PASS`.
+
+The holdout log and visual trace are under [`../artifacts/server_repair_demo_20260927/holdout/`](../artifacts/server_repair_demo_20260927/holdout/).
+
 The complete raw log and ten-frame visual trace are archived under [`../artifacts/server_repair_demo_20260927/`](../artifacts/server_repair_demo_20260927/). The exact integrated stage module used by the replay is [`../artifacts/server_repair_demo_20260927/stage_3.py`](../artifacts/server_repair_demo_20260927/stage_3.py).
 
 ## What changed from the failed path
