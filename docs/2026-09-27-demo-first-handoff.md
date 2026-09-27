@@ -199,6 +199,15 @@ the RGB-D point is biased, the direct path meets unobserved geometry, or the
 motion helper has a reachability/frame defect. Contact and clearance evidence
 are required to distinguish these cases.
 
+An evaluator-only post-hoc comparison then measured the actor-side RGB-D
+candidate against the hidden card root: `0.0785 m` world error and roughly
+`(5.85, 13.86)` pixel projection error. The hidden pose was read only after
+the actor measurement and never used for control. This closes the current
+realistic-bridge diagnosis: the simple localization baseline is insufficient,
+so motion-cap sweeps stop here. A future realistic branch needs stronger
+localization; otherwise the project should package this limitation and proceed
+to R2, the interactive-versus-frozen recovery comparison.
+
 ## Negative and Partial Results
 
 ### Bulb task

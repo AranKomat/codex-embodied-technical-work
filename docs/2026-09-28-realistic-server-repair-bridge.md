@@ -118,6 +118,28 @@ and clearance are unavailable, the experiment must not infer which one from
 this run alone. The longer-run artifact is under
 `artifacts/realistic_server_repair_20260928/diffik250/`.
 
+## Post-hoc localization diagnosis
+
+To separate localization from control, an evaluator-only run captured RGB-D,
+computed the actor candidate, and only then read the hidden card pose. The
+hidden pose was not used for measurement or control. The actor candidate had:
+
+- world error to the card root: `0.0785 m`;
+- projected pixel error: approximately `(5.85, 13.86)` pixels;
+- actor motion actions: `0`.
+
+This confirms that the simple saturation-plus-depth baseline is not accurate
+enough to drive a manipulation target. The diagnostic is archived under
+`artifacts/realistic_server_repair_20260928/posthoc/` and is strictly post-hoc
+evaluator evidence.
+
+The realistic bridge is therefore a **partial, informative result**: the sensor
+contract, calibration, task-specific RGB-D capture, and a bounded action path
+work, while semantic/localization quality and contact/clearance evidence do
+not. Stop repeating motion-cap/controller micro-sweeps. A future realistic
+continuation needs stronger object localization; otherwise package this
+limitation and proceed to the interactive-vs-frozen research comparison.
+
 ## Implementation
 
 `live_session/embodiedswe_backend.py` now supports:

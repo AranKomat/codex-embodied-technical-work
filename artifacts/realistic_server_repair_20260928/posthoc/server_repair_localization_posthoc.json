@@ -1,0 +1,34 @@
+{
+  "actor_candidate": {
+    "depth_m": 1.8048206567764282,
+    "pixel": [
+      315.5758064516129,
+      408.18467741935484
+    ],
+    "point_world_m": [
+      0.2895555939135097,
+      -0.3375063242421008,
+      -0.04456843201726657
+    ]
+  },
+  "evaluator_posthoc": {
+    "card_root_projected_pixel_depth": [
+      309.72770448136004,
+      394.3197650508016,
+      1.7697949366721808
+    ],
+    "card_root_world_m": [
+      0.2800000011920929,
+      -0.36000001430511475,
+      0.029999999329447746
+    ],
+    "pixel_error": [
+      5.848101970252856,
+      13.864912368553235
+    ],
+    "world_error_m": 0.07847118196139377
+  },
+  "motion_actions": 0,
+  "privileged_pose_used_for_control": false,
+  "warning": "post-hoc diagnostic only; hidden pose was read after measurement"
+}
