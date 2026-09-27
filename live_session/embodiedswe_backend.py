@@ -73,19 +73,38 @@ def _rotvec(q):
 
 
 class BulbBackend:
-    """A single live bulb environment owned by one session server."""
+    """A single live assembly environment owned by one session server.
 
-    def __init__(self, env: Any, *, mode: str = "privileged", max_delta: float = 1.0) -> None:
+    The original bulb backend is retained for compatibility. ``task`` selects
+    the small set of privileged labels used only in development state; the
+    realistic observation contract is identical for bulb and server repair.
+    """
+
+    def __init__(
+        self,
+        env: Any,
+        *,
+        mode: str = "privileged",
+        max_delta: float = 1.0,
+        task: str = "bulb",
+    ) -> None:
         if mode not in {"privileged", "realistic"}:
             raise ValueError("mode must be privileged or realistic")
         self.env = env
         self.observation_mode = mode
+        if task not in {"bulb", "server_repair"}:
+            raise ValueError("task must be bulb or server_repair")
+        self.task = task
         self.max_delta = float(max_delta)
         if self.max_delta <= 0:
             raise ValueError("max_delta must be positive")
         self._ee_index = env.robot.articulation.body_names.index("panda_hand")
-        self._bulb = env.scene.bulbs[0]
-        self._socket = env.scene.sockets[0]
+        if task == "bulb":
+            self._object = env.scene.bulbs[0]
+            self._fixture = env.scene.sockets[0]
+        else:
+            self._object = env.scene.card
+            self._fixture = env.scene.case
         self._gripper = 0.04
         self._actions = 0
         self._camera_provider: _RgbdProvider | None = None
@@ -112,11 +131,18 @@ class BulbBackend:
             "action_count": self._actions,
         }
         if self.observation_mode == "privileged":
-            result["privileged_scene"] = {
-                "bulb_position_m": _json(self._bulb.data.root_pos_w[0]),
-                "bulb_quaternion_wxyz": _json(self._bulb.data.root_quat_w[0]),
-                "socket_position_m": _json(self._socket.data.root_pos_w[0]),
-            }
+            if self.task == "bulb":
+                result["privileged_scene"] = {
+                    "bulb_position_m": _json(self._object.data.root_pos_w[0]),
+                    "bulb_quaternion_wxyz": _json(self._object.data.root_quat_w[0]),
+                    "socket_position_m": _json(self._fixture.data.root_pos_w[0]),
+                }
+            else:
+                result["privileged_scene"] = {
+                    "card_position_m": _json(self._object.data.root_pos_w[0]),
+                    "card_quaternion_wxyz": _json(self._object.data.root_quat_w[0]),
+                    "case_position_m": _json(self._fixture.data.root_pos_w[0]),
+                }
         return result
 
     def _action(self, arm_delta: list[float] | None = None) -> Any:
@@ -324,3 +350,21 @@ def build_bulb(*, mode: str = "privileged", control_mode: str = "osc", **_: Any)
 
     env = ENVS.get(f"assembly.bulb.franka.{control_mode}")().build(num_envs=1, room=None)
     return BulbBackend(env, mode=mode)
+
+
+def build_server_repair(
+    *, mode: str = "privileged", control_mode: str = "osc", **_: Any
+) -> BulbBackend:
+    """Launch one server-repair env with the same persistent-session contract."""
+    from isaaclab.app import AppLauncher
+
+    AppLauncher(headless=True, enable_cameras=(mode == "realistic")).app
+    import robobench
+
+    robobench.discover()
+    from robobench.core.registries import ENVS
+
+    env = ENVS.get(f"assembly.server_repair.franka.{control_mode}")().build(
+        num_envs=1, room=None
+    )
+    return BulbBackend(env, mode=mode, task="server_repair")

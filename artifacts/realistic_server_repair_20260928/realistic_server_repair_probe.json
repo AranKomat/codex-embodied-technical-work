@@ -1,0 +1,154 @@
+{
+  "contact": {
+    "available": false,
+    "quality": "unavailable",
+    "reason": "contact V0 is not yet exposed by the backend"
+  },
+  "mode": "realistic",
+  "motion_actions": 0,
+  "observe": {
+    "available": true,
+    "cameras": [
+      {
+        "camera_id": "external_fixed",
+        "camera_to_world": [
+          [
+            0.7327934916262993,
+            -0.23409642936974404,
+            -0.6389151433378876,
+            1.3
+          ],
+          [
+            0.6804510993672779,
+            0.2521038470135705,
+            0.6880624620561866,
+            -1.4
+          ],
+          [
+            -0.0,
+            0.9389582057138086,
+            -0.3440312310280933,
+            1.2
+          ]
+        ],
+        "cx": 320.0,
+        "cy": 240.0,
+        "depth_path": "/workspace/realistic_server_repair_observations/observation_000001.npz",
+        "depth_shape": [
+          480,
+          640
+        ],
+        "depth_unit": "meters",
+        "eye_world_m": [
+          1.3,
+          -1.4,
+          1.2
+        ],
+        "frame": "world",
+        "frame_path": "/workspace/realistic_server_repair_observations/observation_000001.npz",
+        "fx": 457.0073621574767,
+        "fy": 457.0073621574767,
+        "rgb_path": "/workspace/realistic_server_repair_observations/observation_000001.npz",
+        "rgb_shape": [
+          480,
+          640,
+          4
+        ],
+        "target_world_m": [
+          0.0,
+          0.0,
+          0.5
+        ]
+      }
+    ],
+    "depth": [
+      "/workspace/realistic_server_repair_observations/observation_000001.npz"
+    ],
+    "observation_mode": "realistic",
+    "robot": {
+      "ee_position_m": [
+        0.14007863402366638,
+        -0.3399790823459625,
+        0.5534675717353821
+      ],
+      "ee_quaternion_wxyz": [
+        -0.0004995158524252474,
+        0.00020807144755963236,
+        0.9999998807907104,
+        5.9094674043080886e-08
+      ],
+      "gripper_position_m": [
+        0.03999999910593033,
+        0.03999999910593033
+      ],
+      "joint_position": [
+        0.001500000013038516,
+        -0.19699999690055847,
+        -0.00139999995008111,
+        -1.9759999513626099,
+        -0.0002800000074785203,
+        1.7799999713897705,
+        0.7860000133514404,
+        0.03999999910593033,
+        0.03999999910593033
+      ],
+      "joint_velocity": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "source": "simulated_rgbd_render",
+    "timestamp_ns": 1790522252369508936
+  },
+  "state": {
+    "action_count": 0,
+    "observation_mode": "realistic",
+    "robot": {
+      "ee_position_m": [
+        0.14007863402366638,
+        -0.3399790823459625,
+        0.5534675717353821
+      ],
+      "ee_quaternion_wxyz": [
+        -0.0004995158524252474,
+        0.00020807144755963236,
+        0.9999998807907104,
+        5.9094674043080886e-08
+      ],
+      "gripper_position_m": [
+        0.03999999910593033,
+        0.03999999910593033
+      ],
+      "joint_position": [
+        0.001500000013038516,
+        -0.19699999690055847,
+        -0.00139999995008111,
+        -1.9759999513626099,
+        -0.0002800000074785203,
+        1.7799999713897705,
+        0.7860000133514404,
+        0.03999999910593033,
+        0.03999999910593033
+      ],
+      "joint_velocity": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "task": "server_repair"
+}

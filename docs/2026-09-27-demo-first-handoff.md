@@ -165,6 +165,19 @@ Important limitation: the retained realistic frame comes from the bulb backend.
 This qualifies the sensor and geometry substrate, not a no-privilege server
 repair. Contact remains unavailable.
 
+The same boundary has now been probed on the server-repair fixture. The
+no-motion probe returned RGB-D, calibration, and proprioception while
+withholding exact card/case poses; contact remained unavailable. Its receipt is
+under `artifacts/realistic_server_repair_20260928/`, with details in
+`docs/2026-09-28-realistic-server-repair-bridge.md`. This closes the
+task-specific observation-substrate check, not the realistic repair task.
+
+A transparent RGB-plus-depth baseline then generated a plausible card-region
+candidate at pixel `(314.9, 408.1)` and deprojected it to `[-0.0807, 0.0560,
+1.2025]` m through the public measurement path. This used zero motion and no
+privileged pose; it is a candidate anchor, not an independently verified
+localization success.
+
 ## Negative and Partial Results
 
 ### Bulb task
@@ -231,11 +244,11 @@ Follow this order.
    user instruction, terminal diagnosis, generated robot program, measured
    physical stages, final seating, and healthcheck pass. Preserve the uncut log
    and exact provenance alongside any edited presentation.
-2. **Run one bounded server-repair realism bridge.** Expose the server-repair
-   scene through the realistic session backend, use RGB-D plus proprioception,
-   and record how far the existing repair can proceed without exact object
-   poses. A cleanly localized failure is useful.
-3. **Stop broadening after the bridge.** Package the result before starting
+2. **Run one bounded observation-driven action or stronger localization check.**
+   Use only the server-repair RGB-D, calibration, and proprioception signals;
+   keep clearance and target identity explicit. A cleanly localized failure is
+   useful; do not expose simulator poses.
+3. **Stop broadening after that attempt.** Package the result before starting
    contact sensing, SAM, K1, GraspGen-X, VLA training, or a new embodiment.
 
 After those items, the longer research order is:
