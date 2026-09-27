@@ -21,3 +21,5 @@ artifacts/*
 !artifacts/server_repair_demo_20260927/**
 !artifacts/realistic_bridge_20260927/
 !artifacts/realistic_bridge_20260927/**
+!artifacts/r1_frozen_grade_seed0/
+!artifacts/r1_frozen_grade_seed0/**

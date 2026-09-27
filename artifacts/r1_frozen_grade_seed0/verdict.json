@@ -1,0 +1,37 @@
+{
+  "preset": "assembly.server_repair.franka.osc",
+  "scene": "server_repair",
+  "seed": 0,
+  "num_envs": 3,
+  "criteria": "PcGpuAssemblyGrader: The card seated in its slot \u2014 pressed to depth, centred, upright, heading along the slot. \u2014 rubric: grasped \u00d71 (once) \u00b7 aligned \u00d71 \u00b7 pressed \u00d71",
+  "solve_wall_s": 676.409,
+  "solve_sim_steps": 1859,
+  "success": 1.0,
+  "score": 1.0,
+  "summary": {
+    "num_envs": 3,
+    "successes": 3,
+    "success_rate": 1.0,
+    "score_mean": 1.0,
+    "score_std": 0.0,
+    "score_min": 1.0,
+    "score_max": 1.0
+  },
+  "per_traj": [
+    {
+      "env": 0,
+      "success": true,
+      "score": 1.0
+    },
+    {
+      "env": 1,
+      "success": true,
+      "score": 1.0
+    },
+    {
+      "env": 2,
+      "success": true,
+      "score": 1.0
+    }
+  ]
+}
