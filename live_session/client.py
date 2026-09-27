@@ -53,6 +53,13 @@ class RobotClient:
     def contact(self) -> dict[str, Any]:
         return self.call("contact")
 
+    def locate_measure(
+        self, observation: dict[str, Any], *, u: float, v: float, depth_m: float
+    ) -> dict[str, Any]:
+        return self.call(
+            "locate_measure", observation=observation, u=u, v=v, depth_m=depth_m
+        )
+
     def move_delta(self, delta: list[float], *, steps: int = 1) -> dict[str, Any]:
         return self.call("move_delta", delta=delta, steps=steps)
 

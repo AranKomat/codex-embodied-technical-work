@@ -15,6 +15,7 @@ COMMANDS = {
     "observe",
     "state",
     "contact",
+    "locate_measure",
     "move_ee",
     "move_delta",
     "gripper",
@@ -109,6 +110,22 @@ class Request:
                 raise ContractError("cameras must be a list of names")
             args["cameras"] = cameras
             args["depth"] = bool(args.get("depth", True))
+        elif self.command == "locate_measure":
+            observation = args.get("observation")
+            if not isinstance(observation, dict):
+                raise ContractError("observation must be a camera calibration object")
+            for name in ("fx", "fy", "cx", "cy"):
+                value = float(observation.get(name))
+                if not math.isfinite(value):
+                    raise ContractError(f"observation {name} must be finite")
+            args["observation"] = observation
+            for name in ("u", "v", "depth_m"):
+                value = float(args.get(name))
+                if not math.isfinite(value):
+                    raise ContractError(f"{name} must be finite")
+                args[name] = value
+            if args["depth_m"] <= 0:
+                raise ContractError("depth_m must be positive")
         return args
 
 

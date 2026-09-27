@@ -11,6 +11,28 @@
     "cameras": [
       {
         "camera_id": "external_fixed",
+        "camera_to_world": [
+          [
+            0.7327934916262993,
+            -0.23409642936974404,
+            -0.6389151433378876,
+            1.3
+          ],
+          [
+            0.6804510993672779,
+            0.2521038470135705,
+            0.6880624620561866,
+            -1.4
+          ],
+          [
+            -0.0,
+            0.9389582057138086,
+            -0.3440312310280933,
+            1.2
+          ]
+        ],
+        "cx": 320.0,
+        "cy": 240.0,
         "depth_path": "/workspace/realistic_observations/observation_000001.npz",
         "depth_shape": [
           480,
@@ -24,6 +46,8 @@
         ],
         "frame": "world",
         "frame_path": "/workspace/realistic_observations/observation_000001.npz",
+        "fx": 457.0073621574767,
+        "fy": 457.0073621574767,
         "rgb_path": "/workspace/realistic_observations/observation_000001.npz",
         "rgb_shape": [
           480,
@@ -81,7 +105,7 @@
       ]
     },
     "source": "simulated_rgbd_render",
-    "timestamp_ns": 1790517069007832621
+    "timestamp_ns": 1790517357622185734
   },
   "state": {
     "action_count": 0,

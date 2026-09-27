@@ -13,6 +13,8 @@ import os
 from pathlib import Path
 from typing import Any
 
+from .rgbd import look_at_camera_to_world
+
 
 def _json(value: Any) -> Any:
     """Convert torch/numpy scalars and tensors without exposing simulator objects."""
@@ -167,6 +169,21 @@ class BulbBackend:
                 "quality": "unavailable",
                 "reason": "contact V0 is not yet exposed by the backend",
             }
+        if command == "locate_measure":
+            from .rgbd import deproject_pixel
+
+            capture = args["observation"]
+            point = deproject_pixel(
+                args["u"],
+                args["v"],
+                args["depth_m"],
+                fx=capture["fx"],
+                fy=capture["fy"],
+                cx=capture["cx"],
+                cy=capture["cy"],
+                camera_to_world=capture["camera_to_world"],
+            )
+            return {"point_world_m": point, "source": "rgbd_pixel_depth"}
         if command == "move_delta":
             delta = list(args["delta"])
             if any(abs(value) > self.max_delta for value in delta):
@@ -250,8 +267,12 @@ class _RgbdProvider:
         origin = env.iscene.env_origins[0].detach().cpu().numpy().astype(float)
         self.eye = tuple((origin + [1.30, -1.40, 1.20]).tolist())
         self.target = tuple((origin + [0.00, 0.00, 0.50]).tolist())
+        self.width, self.height = 640, 480
+        self.fx = self.fy = 0.5 * self.width / math.tan(math.radians(35.0))
+        self.cx, self.cy = self.width / 2.0, self.height / 2.0
+        self.camera_to_world = look_at_camera_to_world(self.eye, self.target)
         env.sim.set_camera_view(self.eye, self.target, camera_prim_path="/OmniverseKit_Persp")
-        self.product = rep.create.render_product("/OmniverseKit_Persp", (640, 480))
+        self.product = rep.create.render_product("/OmniverseKit_Persp", (self.width, self.height))
         self.rgb = rep.AnnotatorRegistry.get_annotator("rgb", device="cpu")
         self.depth = rep.AnnotatorRegistry.get_annotator("distance_to_camera", device="cpu")
         self.rgb.attach([self.product])
@@ -281,6 +302,11 @@ class _RgbdProvider:
             "depth_shape": list(depth.shape),
             "depth_unit": "meters",
             "frame": "world",
+            "fx": self.fx,
+            "fy": self.fy,
+            "cx": self.cx,
+            "cy": self.cy,
+            "camera_to_world": self.camera_to_world,
             "eye_world_m": list(self.eye),
             "target_world_m": list(self.target),
         }

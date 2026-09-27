@@ -26,6 +26,11 @@ with a 640x480 RGB frame and 640x480 depth frame, both stored in one `.npz`
 observation record, while still withholding exact bulb/socket poses. The
 repeat's JSON and frame are archived alongside the initial result.
 
+The final repeat also included explicit pinhole calibration and a camera-to-world
+matrix. A center-pixel, 1 m synthetic sample deprojected through the committed
+helper to `[0.6611, -0.7119, 0.8560]` m, matching the declared camera pose and
+providing a concrete geometry-contract check.
+
 The bridge is therefore one step further along but not complete: camera data is
 now available, while contact sensing, calibration validation, target/slot
 localization, and a sensor-derived repair attempt remain open. Contact,
