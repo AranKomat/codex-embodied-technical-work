@@ -121,11 +121,9 @@ class SessionServer:
             listener.close()
             self.socket_path.unlink(missing_ok=True)
             # Isaac/Kit can block while tearing down a headless app.  All receipts have already
-            # been flushed at this point, so do not leave a rented GPU pinned after ``stop``.
-            try:
-                self.backend.close()
-            finally:
-                os._exit(0)
+            # been flushed at this point, so process exit is the reliable cleanup boundary for
+            # this dedicated simulator owner; OS teardown releases the GPU and simulator handles.
+            os._exit(0)
 
 
 def load_backend(spec: str, kwargs: dict[str, Any]) -> Backend:
