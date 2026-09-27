@@ -36,3 +36,10 @@ now available, while contact sensing, calibration validation, target/slot
 localization, and a sensor-derived repair attempt remain open. Contact,
 segmentation, K1, GraspGen-X, and VLA infrastructure remain out of scope until
 the RGB-D-derived geometry path is measured.
+
+The retained RGB frame is from the existing bulb backend, not the separate
+server-repair fixture. That is an explicit scope limitation: this probe
+qualifies the observation and geometry substrate, but does not claim a
+sensor-derived server repair. The next bounded task-specific bridge must either
+expose the server-repair scene through the session backend or be labeled as a
+bulb-only sensor experiment.
