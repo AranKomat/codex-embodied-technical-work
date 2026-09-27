@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 
 import numpy as np
@@ -27,7 +28,8 @@ def candidate(rgb: np.ndarray, depth: np.ndarray) -> tuple[float, float, float]:
 
 def main() -> None:
     output = Path("realistic_server_repair_hover.json")
-    backend = build_server_repair(mode="realistic")
+    control_mode = os.environ.get("CONTROL_MODE", "osc")
+    backend = build_server_repair(mode="realistic", control_mode=control_mode)
     try:
         before = backend.dispatch("observe", {"cameras": [], "depth": True})
         camera = before["cameras"][0]
@@ -54,6 +56,7 @@ def main() -> None:
         result = {
             "task": "server_repair",
             "mode": "realistic",
+            "control_mode": control_mode,
             "input": {
                 "pixel": [u, v],
                 "depth_m": depth_m,
@@ -69,10 +72,8 @@ def main() -> None:
         output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
         print(json.dumps(result, indent=2, sort_keys=True), flush=True)
     finally:
-        backend.close()
+        os._exit(0)
 
 
 if __name__ == "__main__":
     main()
-    import os
-    os._exit(0)

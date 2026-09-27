@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 
 from live_session.embodiedswe_backend import build_server_repair
@@ -23,10 +24,8 @@ def main() -> None:
         output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
         print(json.dumps(result, indent=2, sort_keys=True), flush=True)
     finally:
-        backend.close()
+        os._exit(0)
 
 
 if __name__ == "__main__":
     main()
-    import os
-    os._exit(0)

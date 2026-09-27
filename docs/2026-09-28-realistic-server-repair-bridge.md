@@ -88,6 +88,22 @@ Do not increase the action cap or attempt insertion until the motion/clearance
 contract is deliberately addressed. The artifact is under
 `artifacts/realistic_server_repair_20260928/hover/`.
 
+### OSC versus Diff-IK
+
+The same hover experiment was repeated with the registered `diff_ik` control
+mode, keeping the RGB-D procedure, target, and 80-step cap unchanged:
+
+| Controller | Position error | Rotation error | Reached |
+|---|---:|---:|---|
+| OSC | `0.0596 m` | `0.679 rad` | no |
+| Diff-IK | `0.2504 m` | `0.00061 rad` | no |
+
+Diff-IK preserves orientation dramatically better, but this target was not
+reached in position. The result points to a reach/target-frame or motion-step
+issue in the realistic helper, not a reason to add a VLA or grasp model. Both
+runs were exploratory, with clearance and contact unknown. The Diff-IK
+artifacts are under `artifacts/realistic_server_repair_20260928/diffik/`.
+
 ## Implementation
 
 `live_session/embodiedswe_backend.py` now supports:

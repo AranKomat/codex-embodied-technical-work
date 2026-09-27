@@ -186,6 +186,12 @@ contact or clearance certification was available. This is a concrete realistic
 bridge failure, not a benchmark failure: the current motion helper does not
 yet preserve orientation/reachability well enough for a sensor-derived action.
 
+A matched Diff-IK hover comparison preserved orientation (`0.00061 rad` error)
+but ended at `0.2504 m` position error, versus OSC's `0.0596 m` position and
+`0.679 rad` rotation error. This separates the realistic blocker into a
+position/reach or target-frame issue plus an OSC orientation issue; it does not
+justify adding a learned policy before the motion contract is clarified.
+
 ## Negative and Partial Results
 
 ### Bulb task

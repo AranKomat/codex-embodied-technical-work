@@ -8,6 +8,7 @@ candidate point, never a privileged object pose or a motion authorization.
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 
 import numpy as np
@@ -65,10 +66,8 @@ def main() -> None:
         output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
         print(json.dumps(result, indent=2, sort_keys=True), flush=True)
     finally:
-        backend.close()
+        os._exit(0)
 
 
 if __name__ == "__main__":
     main()
-    import os
-    os._exit(0)
