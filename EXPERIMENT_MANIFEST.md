@@ -18,12 +18,13 @@ Test whether a coding agent can diagnose and repair a simulated server through b
 ## Working state
 
 - EmbodiedSWE branch: `exp/technical-worker-server-repair`
+- Current inner checkout commit: `0a82517` (`add server repair capability experiment`)
 - Date initialized: 2026-09-27
 - Python: to be recorded during Phase 0
 - CUDA / driver: to be recorded on the experiment host
 - Isaac Sim / Isaac Lab: to be recorded during Phase 0
 - Codex CLI / model / auth mode: to be recorded before agent runs
-- Machine / GPU: to be recorded before GPU experiments
+- Machine / GPU: Vast.ai single RTX 4090; driver `580.178.04`
 
 ## Guardrails
 
@@ -36,11 +37,10 @@ Test whether a coding agent can diagnose and repair a simulated server through b
 
 ## Initial sequence
 
-1. Reproduce one EmbodiedSWE PC smoke and one fresh-reset Codex solve/grading run.
+1. Reproduce one EmbodiedSWE PC smoke and one fresh-reset Codex solve/grading run. **Done:** Phase 0 bulb score `0.6667`; server-repair capability run started.
 2. Inspect existing PC scenes, tools, graders, and control contracts.
-3. Add the smallest physically coupled server-diagnosis interface and `gpu_unseated` or `ram_unseated` task.
-4. Obtain one scratch-Codex repair using privileged capability-mode state.
-5. Freeze the generated program and measure held-out generalization.
+3. Add the smallest physically coupled server-diagnosis interface and `gpu_unseated` or `ram_unseated` task. **Done:** capability-mode `server_repair` scene, diagnostic tool, condition, and grader alias.
+4. Obtain one scratch-Codex repair using privileged capability-mode state. **Partial:** diagnosis, grasp, and lift pass; insertion fails.
+5. Freeze the generated program and measure held-out generalization. **Blocked:** no complete repair yet.
 6. Measure transfer with prior code, semantic trace, and selected keyframes.
 7. Only then add the realistic RGB/RGB-D and K1-like tool condition.
-
