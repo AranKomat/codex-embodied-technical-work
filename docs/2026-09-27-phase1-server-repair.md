@@ -30,6 +30,15 @@ The next justified test is one registered `diff_ik` controller comparison using
 the already-successful grasp geometry. Do not expand perception or train a VLA
 until this capability slice either succeeds or is formally blocked.
 
+That comparison was run on the same reset. `diff_ik` was materially better than
+OSC: the card stayed within roughly 2 degrees of upright, reached the press
+depth, and avoided the OSC joint-limit warning. It nevertheless stopped about
+6 mm short in X and 7 mm short in Y. One measured final-offset correction was
+replayed from the saved lift checkpoint; it did not materially change the
+endpoint. The capability slice is therefore still incomplete, but the main
+controller bottleneck is now narrowed to final Cartesian calibration/approach,
+not basic grasping, reach, or orientation tracking.
+
 ## Infrastructure
 
 The keep-going verifier independently failed before calling `solve()` because
