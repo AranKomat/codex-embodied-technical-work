@@ -1,0 +1,138 @@
+cat: '/sys/devices/system/cpu/cpu*/cpufreq/scaling_governor': No such file or directory
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/codex-embodied-technical-work/EmbodiedSWE/.venv/lib/python3.11/site-packages/isaaclab/apps/isaaclab.python.headless.kit
+[simgen suite] no task corpus under /workspace/codex-embodied-technical-work/EmbodiedSWE/sim_gen; suite empty
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-27_13-39-32.log[0m
+[36m======================================================================================[0m
+
+[33m13:39:32 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[33m13:39:33 [prims.py] WARNING: Could not perform 'modify_articulation_root_properties' on any prims under: '/World/envs/env_0/Bulb_0'. This might be because of the following reasons:
+	(1) The desired attribute does not exist on any of the prims.
+	(2) The desired attribute exists on an instanced prim.
+		Discovered list of instanced prim paths: [][0m
+{
+  "contact": {
+    "available": false,
+    "quality": "unavailable",
+    "reason": "contact V0 is not yet exposed by the backend"
+  },
+  "mode": "realistic",
+  "motion_actions": 0,
+  "observe": {
+    "available": false,
+    "cameras": [],
+    "depth": [],
+    "observation_mode": "realistic",
+    "reason": "camera provider is not wired in this session build",
+    "robot": {
+      "ee_position_m": [
+        0.49992135167121887,
+        -2.091855276376009e-05,
+        0.5534675121307373
+      ],
+      "ee_quaternion_wxyz": [
+        -1.2798864190699533e-07,
+        0.9999999403953552,
+        -0.0002080396661767736,
+        0.0004994557239115238
+      ],
+      "gripper_position_m": [
+        0.03999999910593033,
+        0.03999999910593033
+      ],
+      "joint_position": [
+        0.001500000013038516,
+        -0.19699999690055847,
+        -0.00139999995008111,
+        -1.9759999513626099,
+        -0.0002800000074785203,
+        1.7799999713897705,
+        0.7860000133514404,
+        0.03999999910593033,
+        0.03999999910593033
+      ],
+      "joint_velocity": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "timestamp_ns": 1790516375780529569
+  },
+  "state": {
+    "action_count": 0,
+    "observation_mode": "realistic",
+    "robot": {
+      "ee_position_m": [
+        0.49992135167121887,
+        -2.091855276376009e-05,
+        0.5534675121307373
+      ],
+      "ee_quaternion_wxyz": [
+        -1.2798864190699533e-07,
+        0.9999999403953552,
+        -0.0002080396661767736,
+        0.0004994557239115238
+      ],
+      "gripper_position_m": [
+        0.03999999910593033,
+        0.03999999910593033
+      ],
+      "joint_position": [
+        0.001500000013038516,
+        -0.19699999690055847,
+        -0.00139999995008111,
+        -1.9759999513626099,
+        -0.0002800000074785203,
+        1.7799999713897705,
+        0.7860000133514404,
+        0.03999999910593033,
+        0.03999999910593033
+      ],
+      "joint_velocity": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  }
+}
+Loading user config located at: '/workspace/codex-embodied-technical-work/EmbodiedSWE/.venv/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[Info] [carb] Logging to file: /workspace/codex-embodied-technical-work/EmbodiedSWE/.venv/lib/python3.11/site-packages/isaacsim/kit/logs/Kit/Isaac-Sim/5.1/kit_20260927_133923.log
+2026-09-27T13:39:23Z [164ms] [Warning] [omni.usd_config.extension] Enable omni.materialx.libs extension to use MaterialX
+2026-09-27T13:39:24Z [574ms] [Warning] [omni.platforminfo.plugin] failed to open the default display.  Can't verify X Server version.
+2026-09-27T13:39:24Z [806ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [omni::physx::IPhysxBenchmarks v1.0] (plugin: <default plugin>), by client: omni.physics.physx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-09-27T13:39:24Z [819ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+
+|---------------------------------------------------------------------------------------------|
+| Driver Version: 580.178.04    | Graphics API: Vulkan
+|=============================================================================================|
+| GPU | Name                             | Active | LDA | GPU Memory | Vendor-ID | LUID       |
+|     |                                  |        |     |            | Device-ID | UUID       |
+|     |                                  |        |     |            | Bus-ID    |            |
+|---------------------------------------------------------------------------------------------|
+| 0   | NVIDIA GeForce RTX 4090          | Yes: 0 |     | 24810   MB | 10de      | 0          |
+|     |                                  |        |     |            | 2684      | 2268e0ea.. |
+|     |                                  |        |     |            | 0         |            |
+|=============================================================================================|
+| OS: 22.04.5 LTS (Jammy Jellyfish) ubuntu, Version: 22.04.5, Kernel: 6.8.0-138-generic
+| Processor: AMD EPYC 7B12 64-Core Processor
+| Cores: 30 | Logical Cores: 30
+|---------------------------------------------------------------------------------------------|
+| Total Memory (MB): 101289 | Free Memory: 98491
+| Total Page/Swap (MB): 0 | Free Page/Swap: 0
+|---------------------------------------------------------------------------------------------|

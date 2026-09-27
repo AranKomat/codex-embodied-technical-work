@@ -43,7 +43,7 @@ Test whether a coding agent can diagnose and repair a simulated server through b
 4. Obtain one scratch-Codex repair using privileged capability-mode state. **Historical baseline:** diagnosis, grasp, and lift passed; the first insertion path failed.
 5. Freeze the generated program and measure held-out generalization. **Done for the corrected staged path:** fresh integrated replay passed, followed by a three-environment holdout; physical seating and digital healthcheck both passed. See [`docs/2026-09-27-demo-first-progress.md`](docs/2026-09-27-demo-first-progress.md).
 6. Package the verified repair as the demo-first milestone. **Done:** logs, stage code, and visual traces are archived under `artifacts/server_repair_demo_20260927/`.
-7. Run one bounded sensor-derived RGB-D/proprioception bridge. **Next:** do not start the full K1/SAM/GraspGen/VLA stack; first measure how much of the verified procedure survives without exact target geometry.
+7. Run one bounded sensor-derived RGB-D/proprioception bridge. **In progress:** the realistic adapter now returns a 640x480 RGB-D frame without privileged object poses; the next experiment is a generic locate/measure facade and one no-privilege repair attempt. Do not start the full K1/SAM/GraspGen/VLA stack.
 
 ## Updated realistic-interactive direction
 

@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import math
 import os
+from pathlib import Path
 from typing import Any
 
 
@@ -85,6 +86,7 @@ class BulbBackend:
         self._socket = env.scene.sockets[0]
         self._gripper = 0.04
         self._actions = 0
+        self._camera_provider: _RgbdProvider | None = None
 
     @property
     def _device(self):
@@ -128,6 +130,28 @@ class BulbBackend:
         if command == "state":
             return self._state()
         if command == "observe":
+            if args.get("cameras") or args.get("depth", True):
+                try:
+                    capture = self._rgbd_capture()
+                except Exception as exc:  # preserve an explicit unavailable observation
+                    return {
+                        "observation_mode": self.observation_mode,
+                        "timestamp_ns": __import__("time").time_ns(),
+                        "robot": self._robot_observation(),
+                        "cameras": [],
+                        "depth": [],
+                        "available": False,
+                        "reason": f"RGB-D capture failed: {type(exc).__name__}: {exc}",
+                    }
+                return {
+                    "observation_mode": self.observation_mode,
+                    "timestamp_ns": __import__("time").time_ns(),
+                    "robot": self._robot_observation(),
+                    "cameras": [capture],
+                    "depth": [capture["depth_path"]],
+                    "available": True,
+                    "source": "simulated_rgbd_render",
+                }
             return {
                 "observation_mode": self.observation_mode,
                 "timestamp_ns": __import__("time").time_ns(),
@@ -203,12 +227,70 @@ class BulbBackend:
     def close(self) -> None:
         self.env.close()
 
+    def _rgbd_capture(self) -> dict[str, Any]:
+        if self.observation_mode != "realistic":
+            raise RuntimeError("RGB-D capture is only exposed in realistic mode")
+        if self._camera_provider is None:
+            self._camera_provider = _RgbdProvider(self.env)
+        return self._camera_provider.capture()
+
+
+class _RgbdProvider:
+    """Lazy, actor-visible camera provider backed by Isaac's render annotators."""
+
+    def __init__(self, env: Any) -> None:
+        import omni.replicator.core as rep
+
+        self.env = env
+        self.rep = rep
+        self.root = Path(os.environ.get("REALISTIC_OBSERVATION_DIR", "/workspace/observations"))
+        self.root.mkdir(parents=True, exist_ok=True)
+        if hasattr(env.sim, "set_render_mode"):
+            env.sim.set_render_mode(env.sim.RenderMode.PARTIAL_RENDERING)
+        origin = env.iscene.env_origins[0].detach().cpu().numpy().astype(float)
+        self.eye = tuple((origin + [1.30, -1.40, 1.20]).tolist())
+        self.target = tuple((origin + [0.00, 0.00, 0.50]).tolist())
+        env.sim.set_camera_view(self.eye, self.target, camera_prim_path="/OmniverseKit_Persp")
+        self.product = rep.create.render_product("/OmniverseKit_Persp", (640, 480))
+        self.rgb = rep.AnnotatorRegistry.get_annotator("rgb", device="cpu")
+        self.depth = rep.AnnotatorRegistry.get_annotator("distance_to_camera", device="cpu")
+        self.rgb.attach([self.product])
+        self.depth.attach([self.product])
+        for _ in range(6):
+            env.sim.render()
+        self.index = 0
+
+    def capture(self) -> dict[str, Any]:
+        import numpy as np
+
+        for _ in range(3):
+            self.env.sim.render()
+        rgb = np.asarray(self.rgb.get_data())
+        depth = np.asarray(self.depth.get_data())
+        if rgb.size == 0 or depth.size == 0:
+            raise RuntimeError("camera annotator returned an empty frame")
+        self.index += 1
+        path = self.root / f"observation_{self.index:06d}.npz"
+        np.savez_compressed(path, rgb=rgb[..., :3].astype(np.uint8), depth=depth.astype(np.float32))
+        return {
+            "camera_id": "external_fixed",
+            "frame_path": str(path),
+            "rgb_path": str(path),
+            "depth_path": str(path),
+            "rgb_shape": list(rgb.shape),
+            "depth_shape": list(depth.shape),
+            "depth_unit": "meters",
+            "frame": "world",
+            "eye_world_m": list(self.eye),
+            "target_world_m": list(self.target),
+        }
+
 
 def build_bulb(*, mode: str = "privileged", control_mode: str = "osc", **_: Any) -> BulbBackend:
     """Launch one bulb env. Must run on the Isaac host, not in a normal unit-test process."""
     from isaaclab.app import AppLauncher
 
-    AppLauncher(headless=True).app
+    AppLauncher(headless=True, enable_cameras=(mode == "realistic")).app
     import robobench
 
     robobench.discover()
