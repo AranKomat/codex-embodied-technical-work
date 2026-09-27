@@ -65,6 +65,29 @@ expects axial camera-Z depth, and the helper also used the wrong sign for image
 Y. The provider now uses `distance_to_image_plane`, and image-down maps to
 negative camera Y. The off-center RGB-D regression test covers the latter.
 
+## Bounded Observation-Driven Action
+
+Using the corrected candidate, a separate run commanded one hover target 20 cm
+above the measured point. It preserved the observed end-effector orientation,
+allowed at most 80 controller steps, and made no contact/manipulation request.
+The result was:
+
+- target: `[0.2930, -0.3347, 0.1525]` m;
+- final position error: `0.0596 m`;
+- final rotation error: `0.679 rad`;
+- controller reached target: `false`;
+- actions: `80`;
+- clearance certified: `false`;
+- contact available: `false`;
+- privileged pose used: `false`.
+
+This is a useful bounded failure: the sensor-derived anchor can drive the
+existing motion helper toward the work area, but the current helper does not
+maintain the requested orientation or reach the hover target within its cap.
+Do not increase the action cap or attempt insertion until the motion/clearance
+contract is deliberately addressed. The artifact is under
+`artifacts/realistic_server_repair_20260928/hover/`.
+
 ## Implementation
 
 `live_session/embodiedswe_backend.py` now supports:

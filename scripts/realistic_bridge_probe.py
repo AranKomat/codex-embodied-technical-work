@@ -32,3 +32,7 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+    # Isaac Kit can retain native threads after the backend closes. The session
+    # server already uses this process-boundary cleanup; standalone probes do too.
+    import os
+    os._exit(0)

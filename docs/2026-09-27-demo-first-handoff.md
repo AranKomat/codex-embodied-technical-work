@@ -179,6 +179,13 @@ the public measurement path. This used zero motion and no privileged pose; it
 is a candidate anchor, not an independently verified localization success.
 The earlier, superseded geometry receipts remain archived for provenance.
 
+One bounded hover action then used that measured point without privileged state.
+The arm moved toward a target 20 cm above the candidate for 80 capped steps,
+but ended with `0.0596 m` position error and `0.679 rad` rotation error. No
+contact or clearance certification was available. This is a concrete realistic
+bridge failure, not a benchmark failure: the current motion helper does not
+yet preserve orientation/reachability well enough for a sensor-derived action.
+
 ## Negative and Partial Results
 
 ### Bulb task
